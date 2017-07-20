@@ -228,40 +228,41 @@ Settings::loadCmdFromFile (std::string fileName) /**< name of file to load from 
 {
   printf ("Loading command line from file %s\n", fileName.c_str ());
 
-  std::string cmd;
-
-  std::ifstream infile(fileName);
-
-  int argc = 0;
-  while (infile >> cmd)
-  {
-    ++argc;
-  }
-
-  infile.close ();
-  infile.open (fileName);
-
-  char **argv = new char *[argc];
-
-  int index = 0;
-  while (infile >> cmd)
-  {
-    argv[index] = new char[cmd.length ()];
-    strcpy (argv[index], cmd.c_str ());
-    ++index;
-  }
-
-  int status = setFromCmd (argc, argv, false);
-
-  for (int i = 0; i < argc; ++i)
-  {
-    delete[] argv[i];
-  }
-  delete[] argv;
-
-  infile.close ();
-
-  return status;
+  // std::string cmd;
+  //
+  // std::ifstream infile(fileName);
+  //
+  // int argc = 0;
+  // while (infile >> cmd)
+  // {
+  //   ++argc;
+  // }
+  //
+  // infile.close ();
+  // infile.open (fileName);
+  //
+  // char **argv = new char *[argc];
+  //
+  // int index = 0;
+  // while (infile >> cmd)
+  // {
+  //   argv[index] = new char[cmd.length ()];
+  //   strcpy (argv[index], cmd.c_str ());
+  //   ++index;
+  // }
+  //
+  // int status = setFromCmd (argc, argv, false);
+  //
+  // for (int i = 0; i < argc; ++i)
+  // {
+  //   delete[] argv[i];
+  // }
+  // delete[] argv;
+  //
+  // infile.close ();
+  //
+  // return status;
+  return EXIT_OK;
 } /* Settings::loadCmdFromFile */
 
 /**
@@ -275,20 +276,20 @@ Settings::saveCmdToFile (int argc, /**< number of arguments */
                          std::string fileName) /**< name of file to save to */
 {
   printf ("Saving command line to file %s\n", fileName.c_str ());
-
-  std::ofstream outfile(fileName);
-
-  for (int i = 1; i < argc; ++i)
-  {
-    if (strcmp (argv[i], "--save-cmd-to-file") == 0)
-    {
-      ++i;
-    }
-    else
-    {
-      outfile << argv[i] << std::endl;
-    }
-  }
+  // 
+  // std::ofstream outfile(fileName);
+  //
+  // for (int i = 1; i < argc; ++i)
+  // {
+  //   if (strcmp (argv[i], "--save-cmd-to-file") == 0)
+  //   {
+  //     ++i;
+  //   }
+  //   else
+  //   {
+  //     outfile << argv[i] << std::endl;
+  //   }
+  // }
 
   return EXIT_OK;
 } /* Settings::saveCmdToFile */

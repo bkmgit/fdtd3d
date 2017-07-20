@@ -2315,32 +2315,32 @@ Scheme3D::performNSteps (time_step startStep, time_step numberTimeSteps)
     {
       if (dumpRes)
       {
-        // BMPDumper<GridCoordinate3D> dumperEx;
+        BMPDumper<GridCoordinate3D> dumperEx;
         // DATDumper<GridCoordinate3D> dumperDATEx;
         // dumperDATEx.init (t, CURRENT, processId, "3D-in-time-Ex");
         // dumperDATEx.dumpGrid (Ex, GridCoordinate3D (0), Ex.getSize ());
 
-        // BMPDumper<GridCoordinate3D> dumperEy;
+        BMPDumper<GridCoordinate3D> dumperEy;
         // DATDumper<GridCoordinate3D> dumperDATEy;
         // dumperDATEy.init (t, CURRENT, processId, "3D-in-time-Ey");
         // dumperDATEy.dumpGrid (Ey, GridCoordinate3D (0), Ey.getSize ());
 
-        // BMPDumper<GridCoordinate3D> dumperEz;
+        BMPDumper<GridCoordinate3D> dumperEz;
         // DATDumper<GridCoordinate3D> dumperDATEz;
         // dumperEz.init (t, CURRENT, processId, "3D-in-time-Ez");
         // dumperEz.dumpGrid (Ez, GridCoordinate3D (0), Ez.getSize ());
 
-        // BMPDumper<GridCoordinate3D> dumperHx;
+        BMPDumper<GridCoordinate3D> dumperHx;
         // DATDumper<GridCoordinate3D> dumperDATHx;
         // dumperDATHx.init (t, CURRENT, processId, "3D-in-time-Hx");
         // dumperDATHx.dumpGrid (Hx, GridCoordinate3D (0), Hx.getSize ());
 
-        // BMPDumper<GridCoordinate3D> dumperHy;
+        BMPDumper<GridCoordinate3D> dumperHy;
         // DATDumper<GridCoordinate3D> dumperDATHy;
         // dumperDATHy.init (t, CURRENT, processId, "3D-in-time-Hy");
         // dumperDATHy.dumpGrid (Hy, GridCoordinate3D (0), Hy.getSize ());
 
-        // BMPDumper<GridCoordinate3D> dumperHz;
+        BMPDumper<GridCoordinate3D> dumperHz;
         // DATDumper<GridCoordinate3D> dumperDATHz;
         // dumperDATHz.init (t, CURRENT, processId, "3D-in-time-Hz");
         // dumperDATHz.dumpGrid (Hz, GridCoordinate3D (0), Hz.getSize ());
@@ -3443,11 +3443,11 @@ Scheme3D::initGrids ()
 
   BMPDumper<GridCoordinate3D> dumper;
 
-  if (dumpRes)
-  {
-    dumper.init (0, CURRENT, processId, "Eps");
-    dumper.dumpGrid (Eps, GridCoordinate3D (0), Eps.getSize ());
-  }
+  // if (dumpRes)
+  // {
+  //   dumper.init (0, CURRENT, processId, "Eps");
+  //   dumper.dumpGrid (Eps, GridCoordinate3D (0), Eps.getSize ());
+  // }
 
   for (int i = 0; i < OmegaPE.getSize ().getX (); ++i)
   {
@@ -3610,21 +3610,21 @@ Scheme3D::initGrids ()
       }
     }
   }
-
-  if (dumpRes)
-  {
-    dumper.init (0, CURRENT, processId, "OmegaPE");
-    dumper.dumpGrid (OmegaPE, GridCoordinate3D (0), Eps.getSize ());
-
-    dumper.init (0, CURRENT, processId, "OmegaPM");
-    dumper.dumpGrid (OmegaPM, GridCoordinate3D (0), Eps.getSize ());
-
-    dumper.init (0, CURRENT, processId, "GammaE");
-    dumper.dumpGrid (GammaE, GridCoordinate3D (0), Eps.getSize ());
-
-    dumper.init (0, CURRENT, processId, "GammaM");
-    dumper.dumpGrid (GammaM, GridCoordinate3D (0), Eps.getSize ());
-  }
+  //
+  // if (dumpRes)
+  // {
+  //   dumper.init (0, CURRENT, processId, "OmegaPE");
+  //   dumper.dumpGrid (OmegaPE, GridCoordinate3D (0), Eps.getSize ());
+  //
+  //   dumper.init (0, CURRENT, processId, "OmegaPM");
+  //   dumper.dumpGrid (OmegaPM, GridCoordinate3D (0), Eps.getSize ());
+  //
+  //   dumper.init (0, CURRENT, processId, "GammaE");
+  //   dumper.dumpGrid (GammaE, GridCoordinate3D (0), Eps.getSize ());
+  //
+  //   dumper.init (0, CURRENT, processId, "GammaM");
+  //   dumper.dumpGrid (GammaM, GridCoordinate3D (0), Eps.getSize ());
+  // }
 
   for (int i = 0; i < Mu.getSize ().getX (); ++i)
   {
@@ -3647,11 +3647,11 @@ Scheme3D::initGrids ()
     }
   }
 
-  if (dumpRes)
-  {
-    dumper.init (0, CURRENT, processId, "Mu");
-    dumper.dumpGrid (Mu, GridCoordinate3D (0), Eps.getSize ());
-  }
+  // if (dumpRes)
+  // {
+  //   dumper.init (0, CURRENT, processId, "Mu");
+  //   dumper.dumpGrid (Mu, GridCoordinate3D (0), Eps.getSize ());
+  // }
 
   FPValue eps0 = PhysicsConst::Eps0;
   FPValue mu0 = PhysicsConst::Mu0;
@@ -3817,15 +3817,15 @@ Scheme3D::initGrids ()
     }
   }
 
-  if (dumpRes)
-  {
-    dumper.init (0, CURRENT, processId, "SigmaX");
-    dumper.dumpGrid (SigmaX, GridCoordinate3D (0), Eps.getSize ());
-    dumper.init (0, CURRENT, processId, "SigmaY");
-    dumper.dumpGrid (SigmaY, GridCoordinate3D (0), Eps.getSize ());
-    dumper.init (0, CURRENT, processId, "SigmaZ");
-    dumper.dumpGrid (SigmaZ, GridCoordinate3D (0), Eps.getSize ());
-  }
+  // if (dumpRes)
+  // {
+  //   dumper.init (0, CURRENT, processId, "SigmaX");
+  //   dumper.dumpGrid (SigmaX, GridCoordinate3D (0), Eps.getSize ());
+  //   dumper.init (0, CURRENT, processId, "SigmaY");
+  //   dumper.dumpGrid (SigmaY, GridCoordinate3D (0), Eps.getSize ());
+  //   dumper.init (0, CURRENT, processId, "SigmaZ");
+  //   dumper.dumpGrid (SigmaZ, GridCoordinate3D (0), Eps.getSize ());
+  // }
 
   for (int i = 0; i < Ex.getSize ().getX (); ++i)
   {

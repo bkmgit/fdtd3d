@@ -96,7 +96,7 @@ int main (int argc, char** argv)
 #endif
 
 #if defined (PARALLEL_GRID)
-  ParallelGridCoordinate bufferSize (solverSettings.getBufSize ());
+  ParallelGridCoordinate bufferSize (solverSettings.getBufferSize ());
 
 #ifdef GRID_2D
   SchemeTMz scheme (&yeeLayout, overallSize, bufferSize,
@@ -230,7 +230,7 @@ int main (int argc, char** argv)
     printf ("Parallel grid scheme: XYZ\n");
 #endif
 
-    printf ("Buffer size: %d\n", solverSettings.getBufSize ());
+    printf ("Buffer size: %d\n", solverSettings.getBufferSize ());
 #endif
 
 #if defined (PARALLEL_GRID)
