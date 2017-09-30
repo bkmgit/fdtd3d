@@ -22,6 +22,12 @@ ParallelGridCore::NodeGridInit (ParallelGridCoordinate size) /**< size of grid *
     nodeGridSizeX = topologySize.getX ();
   }
   nodeGridSizeY = 1;
+
+  if (nodeGridSizeX <= 1)
+  {
+    ASSERT_MESSAGE ("2D-X virtual topology could be used only with number of processes > 1 by Ox axis. "
+                    "Use without parallel grid");
+  }
 #endif /* PARALLEL_BUFFER_DIMENSION_1D_X */
 
 #ifdef PARALLEL_BUFFER_DIMENSION_1D_Y
@@ -34,6 +40,12 @@ ParallelGridCore::NodeGridInit (ParallelGridCoordinate size) /**< size of grid *
     nodeGridSizeY = topologySize.getY ();
   }
   nodeGridSizeX = 1;
+
+  if (nodeGridSizeY <= 1)
+  {
+    ASSERT_MESSAGE ("2D-Y virtual topology could be used only with number of processes > 1 by Oy axis. "
+                    "Use without parallel grid");
+  }
 #endif /* PARALLEL_BUFFER_DIMENSION_1D_Y */
 
   if (getProcessId () == 0)
@@ -71,6 +83,13 @@ ParallelGridCore::NodeGridInit (ParallelGridCoordinate size) /**< size of grid *
   }
 
   nodeGridSizeXY = nodeGridSizeX * nodeGridSizeY;
+
+  if (nodeGridSizeX <= 1 || nodeGridSizeY <= 1)
+  {
+    ASSERT_MESSAGE ("2D-XY virtual topology could be used only with number of processes > 1 by Ox and Oy axis. "
+                    "Recompile with `-DPARALLEL_BUFFER_DIMENSION=x`, or `-DPARALLEL_BUFFER_DIMENSION=y`, or "
+                    "use without parallel grid");
+  }
 
   if (getProcessId () == 0)
   {

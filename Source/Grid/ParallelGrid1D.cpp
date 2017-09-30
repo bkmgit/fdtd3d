@@ -21,6 +21,12 @@ ParallelGridCore::NodeGridInit (ParallelGridCoordinate size) /**< size of grid *
     nodeGridSizeX = topologySize.getX ();
   }
 
+  if (nodeGridSizeX <= 1)
+  {
+    ASSERT_MESSAGE ("1D-X virtual topology could be used only with number of processes > 1 by Ox axis. "
+                    "Use without parallel grid");
+  }
+
   if (getProcessId () == 0)
   {
     printf ("Nodes' grid (%s): %d.\n",

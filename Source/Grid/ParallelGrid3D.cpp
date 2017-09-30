@@ -27,6 +27,12 @@ ParallelGridCore::NodeGridInit (ParallelGridCoordinate size) /**< size of grid *
   }
   nodeGridSizeY = 1;
   nodeGridSizeZ = 1;
+
+  if (nodeGridSizeX <= 1)
+  {
+    ASSERT_MESSAGE ("3D-X virtual topology could be used only with number of processes > 1 by Ox axis. "
+                    "Use without parallel grid");
+  }
 #endif /* PARALLEL_BUFFER_DIMENSION_1D_X */
 
 #ifdef PARALLEL_BUFFER_DIMENSION_1D_Y
@@ -40,6 +46,12 @@ ParallelGridCore::NodeGridInit (ParallelGridCoordinate size) /**< size of grid *
   }
   nodeGridSizeX = 1;
   nodeGridSizeZ = 1;
+
+  if (nodeGridSizeY <= 1)
+  {
+    ASSERT_MESSAGE ("3D-Y virtual topology could be used only with number of processes > 1 by Oy axis. "
+                    "Use without parallel grid");
+  }
 #endif /* PARALLEL_BUFFER_DIMENSION_1D_Y */
 
 #ifdef PARALLEL_BUFFER_DIMENSION_1D_Z
@@ -53,6 +65,12 @@ ParallelGridCore::NodeGridInit (ParallelGridCoordinate size) /**< size of grid *
   }
   nodeGridSizeX = 1;
   nodeGridSizeY = 1;
+
+  if (nodeGridSizeZ <= 1)
+  {
+    ASSERT_MESSAGE ("3D-Z virtual topology could be used only with number of processes > 1 by Oz axis. "
+                    "Use without parallel grid");
+  }
 #endif /* PARALLEL_BUFFER_DIMENSION_1D_Z */
 
   if (getProcessId () == 0)
@@ -96,6 +114,13 @@ ParallelGridCore::NodeGridInit (ParallelGridCoordinate size) /**< desired relati
   nodeGridSizeZ = 1;
 
   nodeGridSizeXY = nodeGridSizeX * nodeGridSizeY;
+
+  if (nodeGridSizeX <= 1 || nodeGridSizeY <= 1)
+  {
+    ASSERT_MESSAGE ("3D-XY virtual topology could be used only with number of processes > 1 by Ox and Oy axis. "
+                    "Recompile with `-DPARALLEL_BUFFER_DIMENSION=x`, or `-DPARALLEL_BUFFER_DIMENSION=y`, or "
+                    "use without parallel grid");
+  }
 #endif /* PARALLEL_BUFFER_DIMENSION_2D_XY */
 #ifdef PARALLEL_BUFFER_DIMENSION_2D_YZ
   if (!doUseManualTopology)
@@ -110,6 +135,13 @@ ParallelGridCore::NodeGridInit (ParallelGridCoordinate size) /**< desired relati
   nodeGridSizeX = 1;
 
   nodeGridSizeYZ = nodeGridSizeY * nodeGridSizeZ;
+
+  if (nodeGridSizeY <= 1 || nodeGridSizeZ <= 1)
+  {
+    ASSERT_MESSAGE ("3D-YZ virtual topology could be used only with number of processes > 1 by Oy and Oz axis. "
+                    "Recompile with `-DPARALLEL_BUFFER_DIMENSION=y`, or `-DPARALLEL_BUFFER_DIMENSION=z`, or "
+                    "use without parallel grid");
+  }
 #endif /* PARALLEL_BUFFER_DIMENSION_2D_YZ */
 #ifdef PARALLEL_BUFFER_DIMENSION_2D_XZ
   if (!doUseManualTopology)
@@ -124,6 +156,13 @@ ParallelGridCore::NodeGridInit (ParallelGridCoordinate size) /**< desired relati
   nodeGridSizeY = 1;
 
   nodeGridSizeXZ = nodeGridSizeX * nodeGridSizeZ;
+
+  if (nodeGridSizeX <= 1 || nodeGridSizeZ <= 1)
+  {
+    ASSERT_MESSAGE ("3D-XZ virtual topology could be used only with number of processes > 1 by Ox and Oz axis. "
+                    "Recompile with `-DPARALLEL_BUFFER_DIMENSION=x`, or `-DPARALLEL_BUFFER_DIMENSION=z`, or "
+                    "use without parallel grid");
+  }
 #endif /* PARALLEL_BUFFER_DIMENSION_2D_XZ */
 
   if (getProcessId () == 0)
@@ -165,6 +204,15 @@ ParallelGridCore::NodeGridInit (ParallelGridCoordinate size) /**< size of grid *
 
   nodeGridSizeXYZ = nodeGridSizeX * nodeGridSizeY * nodeGridSizeZ;
   nodeGridSizeXY = nodeGridSizeX * nodeGridSizeY;
+
+  if (nodeGridSizeX <= 1 || nodeGridSizeY <= 1 || nodeGridSizeZ <= 1)
+  {
+    ASSERT_MESSAGE ("3D-XYZ virtual topology could be used only with number of processes > 1 by Ox and Oy axis. "
+                    "Recompile with `-DPARALLEL_BUFFER_DIMENSION=x`, or `-DPARALLEL_BUFFER_DIMENSION=y`, or "
+                    "`-DPARALLEL_BUFFER_DIMENSION=z`, or `-DPARALLEL_BUFFER_DIMENSION=xy`, or "
+                    "`-DPARALLEL_BUFFER_DIMENSION=yz`, or `-DPARALLEL_BUFFER_DIMENSION=xz`, or "
+                    "use without parallel grid");
+  }
 
   if (getProcessId () == 0)
   {
