@@ -1,10 +1,14 @@
 #include "Assert.h"
 
 #include <cstdlib>
+
+#ifdef BACKTRACE_AT_FAIL
 #include <execinfo.h>
+#endif
 
 void program_fail ()
 {
+#ifdef BACKTRACE_AT_FAIL
   const unsigned bufsize = 256;
   int nptrs;
   void *buffer[bufsize];
@@ -27,6 +31,7 @@ void program_fail ()
   }
 
   free(strings);
+#endif
 
   exit (1);
 }

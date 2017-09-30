@@ -50,6 +50,7 @@ PARALLEL_BUFFER_DIMENSION - dimension of parallel buffers, i.e. actual coordinat
 CXX11_ENABLED - allow support of C++11 (ON or OFF)
 CUDA_ENABLED - enable support of GPU (ON or OFF)
 CUDA_ARCH_SM_TYPE - sm type for GPU
+BACKTRACE_AT_FAIL - show backtrace at fail (ON or OFF)
 ```
 
 If any of the flags change or some new are added, testing scripts should be updated.

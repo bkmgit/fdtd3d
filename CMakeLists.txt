@@ -8,6 +8,7 @@ option(DYNAMIC_GRID "Use dynamic grid" OFF)
 option(CUDA_ENABLED "Cuda support enabled" OFF)
 option(CXX11_ENABLED "C++11 support enabled" OFF)
 option(COMPLEX_FIELD_VALUES "Complex field values" OFF)
+option(BACKTRACE_AT_FAIL "Show backtrace at fail" ON)
 
 set(VALUE_TYPE "d" CACHE STRING "Defines type of values")
 set(TIME_STEPS "2" CACHE STRING "Defines number of time steps used")
@@ -213,6 +214,10 @@ set (BUILD_FLAGS "")
 if ("${CXX11_ENABLED}")
   add_definitions (-DCXX11_ENABLED)
   set (BUILD_FLAGS "${BUILD_FLAGS} -std=c++11")
+endif ()
+
+if ("${BACKTRACE_AT_FAIL}")
+  add_definitions (-DBACKTRACE_AT_FAIL)
 endif ()
 
 #if ("${CMAKE_BUILD_TYPE}" STREQUAL "Release")
