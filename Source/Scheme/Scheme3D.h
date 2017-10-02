@@ -157,6 +157,9 @@ private:
 
   void additionalUpdateOfGrids (time_step, time_step &);
 
+  GridCoordinate3D getStartCoord (GridType, OrthogonalAxis, GridCoordinate3D);
+  GridCoordinate3D getEndCoord (GridType, OrthogonalAxis, GridCoordinate3D);
+
 public:
 
   virtual void performSteps () CXX11_OVERRIDE;
